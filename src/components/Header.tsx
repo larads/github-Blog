@@ -1,4 +1,3 @@
-import { UserCard } from "./user-card";
 
 export function Header() {
     return (
@@ -6,8 +5,6 @@ export function Header() {
             <div className="max-w-7xl w-full mx-auto px-6 flex items-center justify-center">
                 <img src="/src/assets/Logo.png" alt="" className="mt-16" />
             </div>
-
-            <UserCard />
         </header>
     )
 }
