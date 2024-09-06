@@ -1,8 +1,10 @@
+import { useContext, useEffect, useState } from "react";
+
 import { api } from "../lib/axios";
-import { useEffect, useState } from "react";
 import { Header } from "../components/Header";
 import { UserCard } from "../components/user-card";
 import { BlogCard } from "../components/blog-card";
+import { BlogContext } from "../context/blog-context";
 import { SearchForm } from "../components/search-form";
 
 export interface GithubDataProps {
@@ -17,6 +19,8 @@ export interface GithubDataProps {
 
 export function Blog() {
     const [userGithubData, setUserGithubData] = useState<GithubDataProps>({} as GithubDataProps)
+
+    const { post } = useContext(BlogContext)
 
     async function fetchGithubData() {
         const response = await api.get('/users/larads')
@@ -54,12 +58,13 @@ export function Blog() {
             </div>
 
             <main className="max-w-4xl mx-auto mt-12 grid grid-cols-2 gap-8 pb-32">
-                <BlogCard />
-                <BlogCard />
-                <BlogCard />
-                <BlogCard />
-                <BlogCard />
-                <BlogCard />
+                {
+                    post.map(item => {
+                        return (
+                            <BlogCard key={item.title} body={item.body} title={item.title} />
+                        )
+                    })
+                }
             </main>
         </div>
     )
