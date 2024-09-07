@@ -4,6 +4,7 @@ import { ReactNode, createContext, useEffect, useState } from "react";
 interface Post {
     title: string
     body: string
+    number: number
 }
 
 interface GithubDataProps {
@@ -46,6 +47,7 @@ export function BlogProvider({ children }: BlogProviderProps) {
             login: data.login
         })
     }
+
 
     async function fetchPostsFromGithubIssues(query: string = '') {
         const response = await api.get(`/search/issues?q=${query}%20repo:larads/github-Blog`)

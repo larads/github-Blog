@@ -1,10 +1,13 @@
-import { Blog } from "./screens/Blog";
+import { Router } from "./Router";
+import { BrowserRouter } from "react-router-dom";
 import { BlogProvider } from "./context/blog-context";
 
 export function App() {
     return (
-        <BlogProvider>
-            <Blog />
-        </BlogProvider>
+        <BrowserRouter>
+            <BlogProvider>
+                <Router />
+            </BlogProvider>
+        </BrowserRouter>
     )
 }
