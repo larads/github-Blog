@@ -1,6 +1,4 @@
-import { useContext, useEffect, useState } from "react";
-
-import { api } from "../lib/axios";
+import { useContext } from "react";
 import { Header } from "../components/Header";
 import { UserCard } from "../components/user-card";
 import { BlogCard } from "../components/blog-card";
@@ -18,30 +16,7 @@ export interface GithubDataProps {
 }
 
 export function Blog() {
-    const [userGithubData, setUserGithubData] = useState<GithubDataProps>({} as GithubDataProps)
-
-    const { post } = useContext(BlogContext)
-
-    async function fetchGithubData() {
-        const response = await api.get('/users/larads')
-
-        const data = response.data
-
-        setUserGithubData({
-            bio: data.bio,
-            name: data.name,
-            login: data.login,
-            html_url: data.html_url,
-            location: data.location,
-            followers: data.followers,
-            avatar_url: data.avatar_url,
-        })
-    }
-
-
-    useEffect(() => {
-        fetchGithubData()
-    }, [])
+    const { post, userGithubData } = useContext(BlogContext)
 
     return (
         <div className="h-screen">
